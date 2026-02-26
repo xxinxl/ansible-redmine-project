@@ -1,0 +1,8 @@
+---
+- name: Развертывание Redmine через RAW
+  hosts: web_servers
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: Запуск Redmine напрямую через SSH
+      raw: docker run -d --name redmine-app -p 80:3000 redmine:latest || docker start redmine-app
